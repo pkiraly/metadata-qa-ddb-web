@@ -221,11 +221,12 @@ abstract class BaseTab implements Tab {
    */
   private function getConfiguration(): array {
     $configuration = parse_ini_file("configuration.cnf", false, INI_SCANNER_TYPED);
-    $variables = ['MQAF_DB_HOST', 'MQAF_DB_PORT', 'MQAF_DB_DATABASE', 'MQAF_DB_USER',
-                  'MQAF_DB_PASSWORD', 'MQAF_SOLR_HOST', 'MQAF_SOLR_PORT'];
+    $variables = ['INPUT_DIR', 'OUTPUT_DIR', 'MQAF_DB_HOST', 'MQAF_DB_PORT', 'MQAF_DB_DATABASE',
+                  'MQAF_DB_USER', 'MQAF_DB_PASSWORD', 'MQAF_SOLR_HOST', 'MQAF_SOLR_PORT'];
     foreach ($variables as $key) {
-      if (isset($_ENV[$key]) && !empty($_ENV[$key])) {
-        $configuration[$key] = $_ENV[$key];
+      $value = $_ENV[$key] ?? getenv($key);
+      if ($value !== false && $value !== '') {
+        $configuration[$key] = $value;
       }
     }
     return $configuration;
