@@ -19,7 +19,7 @@ RUN apt-get update \
       less \
       libyaml-dev libicu-dev libzip-dev \
       default-mysql-client \
-      php8.1-raphf \
+      # php-raphf \
       # php php-mysql php-sqlite3 php-intl \
      && pecl install yaml \
      && docker-php-ext-configure intl \
@@ -47,7 +47,7 @@ RUN \
  #
  && cd libs/ \
  && curl -s -L https://github.com/smarty-php/smarty/archive/v${SMARTY_VERSION}.zip --output v$SMARTY_VERSION.zip \
- && unzip -q v${SMARTY_VERSION}.zip \
+ && unzip -oq v${SMARTY_VERSION}.zip \
  && rm v${SMARTY_VERSION}.zip \
  && mkdir -p _smarty/templates_c \
  && chmod a+w -R _smarty/templates_c/ \
@@ -56,7 +56,7 @@ RUN \
  #
  && curl -s -L https://github.com/dompdf/dompdf/releases/download/v${DOMPDF_VERSION}/dompdf-${DOMPDF_VERSION}.zip \
     --output dompdf-${DOMPDF_VERSION}.zip \
- && unzip dompdf-${DOMPDF_VERSION}.zip \
+ && unzip -oq dompdf-${DOMPDF_VERSION}.zip \
  && rm dompdf-${DOMPDF_VERSION}.zip \
  #
  # set apache
