@@ -19,7 +19,7 @@ RUN apt-get update \
       less \
       libyaml-dev libicu-dev libzip-dev \
       default-mysql-client \
-      php-raphf \
+      php8.1-raphf \
       # php php-mysql php-sqlite3 php-intl \
      && pecl install yaml \
      && docker-php-ext-configure intl \
