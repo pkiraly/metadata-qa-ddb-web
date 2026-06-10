@@ -8,11 +8,12 @@ class Downloader extends BaseTab {
 
     $this->action = getOrDefault('action', 'downloadFile', ['downloadRecord', 'downloadFile', 'csvFile']);
     $id = getOrDefault('id', '');
+    $file = getOrDefault('file', '');
     if ($id != '' && $this->action == 'downloadRecord') {
       include_once('Record.php');
       $record = new Record();
-      $this->downloadContent($record->getXml($id), 'record.xml', 'application/xml');
-
+      list($file, $xml) = $record->getXml($file, $id);
+      $this->downloadContent($xml, 'record.xml', 'application/xml');
     } else if ($this->action == 'downloadFile') {
       $filename = $this->db->fetchValue($this->db->getFilenameByRecordId($id), 'file');
       error_log('filename: ' . $filename);

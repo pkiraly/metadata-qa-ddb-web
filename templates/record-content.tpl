@@ -62,11 +62,11 @@
       </tbody>
     </table>
 
-    <xmp id="content">{$record}</xmp>
+    <div id="xml-content">{$xml}</div>
 
     {if $displayType == 'html'}
       <p>
-        <a href="?tab=downloader&action=downloadRecord&id={$id}">download record</a>
+        <a href="?tab=downloader&action=downloadRecord&id={$id}&file={$file|urlencode}">download record</a>
         &mdash;
         <a href="?tab=downloader&action=downloadFile&id={$id}">download file</a>
         &mdash;

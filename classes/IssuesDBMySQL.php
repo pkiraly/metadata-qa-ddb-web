@@ -12,7 +12,7 @@ class IssuesDBMySQL {
   public function getIssuesCount($field, $value, $op = 'eq', $schema = '', $provider_id = '', $set_id = '', $file = '') {
     $this->values = [];
     $where = $this->getWhere($schema, $provider_id, $set_id, $file, FALSE, 'i.');
-    error_log('getIssuesCount() -- WHERE: ' . $where . ' values: ' . json_encode(['field' => $field, 'value' => $value, 'op' => $op, 'schema' => $schema, 'provider_id' => $provider_id, 'set_id' => $set_id, 'file' => $file]));
+    // error_log('getIssuesCount() -- WHERE: ' . $where . ' values: ' . json_encode(['field' => $field, 'value' => $value, 'op' => $op, 'schema' => $schema, 'provider_id' => $provider_id, 'set_id' => $set_id, 'file' => $file]));
     $_op = $op == 'eq' ? '=' : ($op == 'lt' ? '<' : '>');
     if ($where == '') {
       $sql = 'SELECT COUNT(*) AS count
@@ -27,15 +27,15 @@ class IssuesDBMySQL {
       else
         $sql .= ' WHERE ' . $where;
     }
-    error_log('getIssuesCount: ' . cleanSql($sql));
+    // error_log('getIssuesCount: ' . cleanSql($sql));
     $stmt = $this->db->prepare($sql);
     if ($field != '')
       $this->bindValue($stmt, ':value', $value, preg_match('/:score$/', $field) ? PDO::PARAM_INT : PDO::PARAM_STR);
     if ($where != '')
       $this->bindValues($schema, $provider_id, $set_id, $file, $stmt);
 
-    error_log('getIssuesCount: ' . var_export($this->db->errorInfo(), TRUE));
-    error_log('getIssuesCount: ' . cleanSql($this->getSQL($stmt)));
+    // error_log('getIssuesCount: ' . var_export($this->db->errorInfo(), TRUE));
+    // error_log('getIssuesCount: ' . cleanSql($this->getSQL($stmt)));
     $stmt->execute();
     return $stmt;
   }
@@ -77,8 +77,8 @@ class IssuesDBMySQL {
       $this->bindValues($schema, $provider_id, $set_id, $file, $stmt);
     $this->bindValue($stmt, ':offset', $offset, PDO::PARAM_INT);
     $this->bindValue($stmt, ':limit', $limit, PDO::PARAM_INT);
-    error_log('getIssues: ' . cleanSql($this->getSQL($stmt)));
-    error_log('getIssues: ' . json_encode(['field' => $field, 'value' => $value]));
+    // error_log('getIssues: ' . cleanSql($this->getSQL($stmt)));
+    // error_log('getIssues: ' . json_encode(['field' => $field, 'value' => $value]));
 
     $stmt->execute();
     return $stmt;
@@ -104,8 +104,8 @@ class IssuesDBMySQL {
       $stmt = $this->db->prepare('SELECT * FROM issue WHERE recordId = :value');
     }
     $this->bindValue($stmt, ':value', $id, PDO::PARAM_STR);
-    error_log('getIssuesByFileAndRecordId');
-    error_log(cleanSql($this->getSQL($stmt)));
+    // error_log('getIssuesByFileAndRecordId');
+    // error_log(cleanSql($this->getSQL($stmt)));
     // error_log(json_encode(['$file' => $file, 'id' => $id]));
 
     $stmt->execute();
@@ -156,6 +156,7 @@ class IssuesDBMySQL {
   }
 
   public function getRecord($id) {
+    error_log('get record');
     $this->values = [];
     $stmt = $this->db->prepare('SELECT xml FROM record WHERE id = :value');
     $this->bindValue($stmt, ':value', $id, PDO::PARAM_STR);
@@ -264,7 +265,7 @@ class IssuesDBMySQL {
       LEFT JOIN file AS f ON (i.filename = f.file) '
       . $where . ' GROUP BY i.metadata_schema');
     $this->bindValues($schema, $provider_id, $set_id, $file, $stmt);
-    error_log('countRecordsBySchema: ' . cleanSql($this->getSQL($stmt)));
+    // error_log('countRecordsBySchema: ' . cleanSql($this->getSQL($stmt)));
 
     $stmt->execute();
     return $stmt;
@@ -285,7 +286,7 @@ class IssuesDBMySQL {
       LEFT JOIN file AS f ON (i.filename = f.file) '
       . $where . ' GROUP BY provider_name, provider_id');
     $this->bindValues($schema, $provider_id, $set_id, $file, $stmt);
-    error_log('countRecordsByProvider: ' . cleanSql($this->getSQL($stmt)));
+    // error_log('countRecordsByProvider: ' . cleanSql($this->getSQL($stmt)));
 
     $stmt->execute();
     return $stmt;
@@ -322,6 +323,7 @@ class IssuesDBMySQL {
     // error_log('rowCount: ' . $result->rowCount());
     if ($result->rowCount() > 0) {
       $row = $result->fetch(PDO::FETCH_ASSOC);
+      /*
       if (!is_array($row)) {
         error_log('SQL: ' . $this->getSQL($result));
         error_log('ERROR key: ' . $key);
@@ -329,6 +331,7 @@ class IssuesDBMySQL {
         error_log('ERROR gettype($row): ' . gettype($row));
         error_log(json_encode(debug_backtrace()));
       }
+      */
       try {
         return $row[$key];
       } catch (PDOException $e) {

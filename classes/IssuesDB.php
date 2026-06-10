@@ -120,7 +120,6 @@ class IssuesDB extends SQLite3 {
       $stmt = $this->prepare('SELECT file, xml FROM record WHERE id = :id');
     }
     $stmt->bindValue(':id',   $id,   SQLITE3_TEXT);
-    // error_log('getRecord: ' . cleanSql($stmt->getSQL(TRUE)));
 
     return $stmt->execute();
   }

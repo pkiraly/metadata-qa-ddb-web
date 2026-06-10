@@ -25,10 +25,8 @@ abstract class BaseTab implements Tab {
   public function __construct() {
     $this->configuration = $this->getConfiguration();
 
-    error_log('configuration: ' . json_encode($this->configuration));
     $this->inputDir = $this->configuration['INPUT_DIR'];
     $this->outputDir = $this->configuration['OUTPUT_DIR'];
-    // error_log('outputDir: ' . $this->outputDir);
     $this->subdirs = array_values(array_diff(scandir($this->outputDir), ['.', '..']));
     $this->subdir = getOrDefault('subdir', 'DC-DDB-WuerzburgIMG', $this->subdirs);
     $this->lang = getOrDefault('lang', 'en', ['en', 'de']);
@@ -79,7 +77,7 @@ abstract class BaseTab implements Tab {
     $file = getOrDefault('file', '');
     $this->parameters['file'] = $file;
     if ($file != '') {
-      if (!in_array($tab, ['record', 'records'])) {
+      if (!in_array($tab, ['record', 'records', 'downloader'])) {
         header('Location: ?tab=records&file=' . $file . '&lang=' . $this->parameters['lang']);
         exit;
       } else {
@@ -113,7 +111,12 @@ abstract class BaseTab implements Tab {
     $this->file = $file; // == '' ? '' : '%' . $file . '%';
     $this->count = $this->db->fetchValue($this->db->getCount($this->schema, $this->provider_id, $this->set_id, $this->file), 'count');
     $smarty->assign('count', $this->count);
-    $applRootUrl = sprintf('%s://%s%s', $_SERVER['REQUEST_SCHEME'], $_SERVER['SERVER_NAME'], str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']));
+    $applRootUrl = sprintf(
+      '%s://%s%s',
+      $_SERVER['REQUEST_SCHEME'], $_SERVER['SERVER_NAME'],
+      str_replace('/index.php', '', $_SERVER['SCRIPT_NAME'])
+    );
+
     $smarty->assign('applRootUrl', $applRootUrl);
   }
 
