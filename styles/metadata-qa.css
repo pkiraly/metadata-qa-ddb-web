@@ -16,7 +16,7 @@
 }
 
 h1 {
-  color: #37ba00;
+  /* color: #37ba00; */
   padding: 5px;
   font-weight: 900;
   /*
@@ -27,7 +27,7 @@ h1 {
 
 h1 span {
   font-size: 80%;
-  color: #999;
+  /* color: #999; */
   font-weight: 60;
 }
 

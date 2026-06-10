@@ -1,11 +1,11 @@
-<diw class="row">
+<diw class="row" style="background-color: brown; background-image: url(https://www.deutsche-digitale-bibliothek.de/assets/ddb-logo-lg-09861113a626a68e170a03d1cba40d51.svg);  background-repeat: no-repeat">
   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-    <a href="." class="header-link"><img class="hidden-xs hidden-sm" height="160"
-    src="https://www.deutsche-digitale-bibliothek.de/assets/ddb-logo-rgb-e74dcc445aa1fd3fe5014274d4d7c6ed.png"></a>
+    <!--a href="." class="header-link"><img class="hidden-xs hidden-sm" width="400"
+    src="https://www.deutsche-digitale-bibliothek.de/assets/ddb-logo-lg-09861113a626a68e170a03d1cba40d51.svg"></a-->
   </div>
-  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 align-bottom" style="vertical-align: bottom !important;">
+  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 align-bottom" style="vertical-align: bottom !important; color: #ccc;">
     <h1 style="text-align: right; vertical-align: bottom; margin-top: 100px;" class="align-bottom">
-      <i class="fa fa-cogs" aria-hidden="true"></i> <span>{t}metadata quality assessment dashboard{/t}</span>
+      <i class="fa fa-cogs" aria-hidden="true" ></i> <span>{t}metadata quality assessment dashboard{/t}</span>
     </h1>
   </div>
 </diw>
