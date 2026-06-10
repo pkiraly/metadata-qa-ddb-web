@@ -84,13 +84,28 @@ class Overview extends BaseTab {
     $this->outputType = 'none';
 
     $this->printHeader('overview-scores.csv');
-    echo "count,frequency\n";
+    $max = 0;
+    $values = [];
     foreach ($frequency as $key => $record) {
       if ($key == 'ruleCatalog:score') {
         foreach ($record as $entry) {
-          echo sprintf("%d,%d\n", $entry['value'], $entry['frequency']);
+          $value = int($entry['value']);
+          $values[$value] = int($entry['frequency']);
+          if ($value > 0)
+            $max = $value;
         }
       }
+    }
+    $keys = range(1, $max);
+    for ($i = 1; $i < $max; $i++) {
+      if (!isset($values[$i]))
+        $values[$i] = 0;
+    }
+    ksort($values);
+
+    echo "count,frequency\n";
+    foreach ($values as $k => $v) {
+      echo "$k,$v\n";
     }
   }
 
