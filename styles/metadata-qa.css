@@ -9,6 +9,12 @@
    */
 }
 
+#xml-content {
+  max-width: 800px;
+  font-family: 'Courier New', Courier, monospace;
+  margin: auto
+}
+
 h1 {
   color: #37ba00;
   padding: 5px;

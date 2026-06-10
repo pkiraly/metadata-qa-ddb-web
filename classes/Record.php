@@ -26,6 +26,7 @@ class Record extends BaseTab {
         $this->downloadContent($xml, 'record.xml', 'application/xml');
       } else {
         $smarty->assign('record', $xml);
+        $smarty->assign('xml', $this->asHtml($xml));
         $smarty->assign('issues', $this->getIssues($file, $id));
         $smarty->assign('filename', $file); // $this->db->fetchValue($this->db->getFilenameByRecordId($id), 'file'));
         $smarty->assign('filedata', $this->db->getFileDataByRecordId($file, $id)->fetch(PDO::FETCH_ASSOC));
@@ -56,6 +57,8 @@ class Record extends BaseTab {
   }
 
   public function getXml($file, $id): array {
+    error_log('Record::getXml()');
+    error_log($this->outputDir . 'ddb-record.sqlite');
     $db = new IssuesDB($this->outputDir, 'ddb-record.sqlite');
     error_log('id: ' . $id);
     error_log('file: ' . $file);
@@ -101,5 +104,19 @@ class Record extends BaseTab {
       $issues = [];
     }
     return $issues;
+  }
+
+  private function replaceSpace($matches) {
+    error_log('replaceSpace:' . $matches[1]);
+    return str_replace(" ", "&nbsp;", $matches[1]);
+  }
+
+  private function asHtml($xml) {
+    error_log('asHtml');
+    $html = htmlentities($xml);
+    $html = preg_replace_callback('/^( +)/m', [$this, 'replaceSpace'], $html);
+    $html = preg_replace("/\r?\n/", "<br/>", $html);
+    error_log(substr($html, 0, 1000));
+    return $html;
   }
 }
