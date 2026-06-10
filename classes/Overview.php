@@ -89,14 +89,14 @@ class Overview extends BaseTab {
     foreach ($frequency as $key => $record) {
       if ($key == 'ruleCatalog:score') {
         foreach ($record as $entry) {
-          $value = int($entry['value']);
-          $values[$value] = int($entry['frequency']);
-          if ($value > 0)
+          $value = intval($entry['value']);
+          $values[$value] = intval($entry['frequency']);
+          if ($value > $max)
             $max = $value;
         }
       }
     }
-    $keys = range(1, $max);
+
     for ($i = 1; $i < $max; $i++) {
       if (!isset($values[$i]))
         $values[$i] = 0;

@@ -138,7 +138,7 @@ class IssuesDBMySQL {
   public function getFrequency($schema = '', $provider_id = '', $set_id = '', $file = '') {
     $this->values = [];
     $where = $this->getWhere($schema, $provider_id, $set_id, '');
-    $stmt = $this->db->prepare('SELECT field, value, frequency FROM frequency ' . $where . ' ORDER BY field, value');
+    $stmt = $this->db->prepare('SELECT field, value, frequency FROM frequency ' . $where . ' ORDER BY field');
     $this->bindValues($schema, $provider_id, $set_id, '', $stmt);
 
     $stmt->execute();
