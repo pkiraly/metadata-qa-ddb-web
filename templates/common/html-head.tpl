@@ -11,6 +11,5 @@
   <script src="js/feff23b961.js"></script>
   <script src="//code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="styles/metadata-qa.css">
-  <script src="https://d3js.org/d3.v5.min.js"></script>
 </head>
 <body>

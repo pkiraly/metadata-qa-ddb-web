@@ -698,12 +698,12 @@ table.values {
 }
 
 table.values td.value {
-  width: 40px;
+  width: 30px;
   text-align: center;
 }
 
 table.values td.frequency {
-  width: 40px;
+  width: 30px;
   text-align: center;
 }
 

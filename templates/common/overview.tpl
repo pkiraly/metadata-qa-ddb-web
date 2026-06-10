@@ -4,29 +4,28 @@
 {/if}
 
 <p>average score: <strong>{sprintf("%.2f", $totalScore)}</strong> (not measured: {$notMeasured} records)</p>
-<table class="values">
-  <caption>score distribution</caption>
-  <tr>
-    <td class="">score</td>
-    {foreach $frequency['ruleCatalog:score'] as $record name="records"}
-      {if !is_null($record['value']) && $record['value'] != 'NA'}
-        <td class="value">
-          <a href="?&tab=records&field=ruleCatalog:score&value={$record['value']}&{$controller->getCommonUrlParameters()}">
-            {$record['value']}
-          </a>
-        </td>
-      {/if}
-   {/foreach}
-  </tr>
-  <tr>
-    <td class="">records</td>
-    {foreach $frequency['ruleCatalog:score'] as $record name="records"}
-      {if !is_null($record['value']) && $record['value'] != 'NA'}
-        <td class="frequency">{$record['frequency']}</td>
-      {/if}
-    {/foreach}
-  </tr>
-</table>
+
+<div><caption>score distribution</caption></div>
+<svg class="histogram-chart" width="960" height="300"></svg>
+<script src="libs/d3.v5.min.js"></script>
+<script src="js/histogram.js" type="text/javascript"></script>
+<script>
+const db = '{$id}';
+const count = {$count};
+const link = '?&tab=records&field=ruleCatalog:score&{$controller->getCommonUrlParameters()}&value='
+{literal}
+const units = 'scores';
+const histogramDataUrl = '?tab=overview&action=downloadRuleCatalogScores';
+const histogramSvgClass = 'histogram-chart';
+
+const tooltip = d3.select("body")
+    .append("div")
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .attr("id", "tooltip")
+displayHistogram(histogramDataUrl, histogramSvgClass);
+{/literal}
+</script>
 
 <table id="criteria-table">
   <thead>

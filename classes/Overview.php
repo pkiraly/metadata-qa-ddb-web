@@ -11,11 +11,10 @@ class Overview extends BaseTab {
   public function prepareData(Smarty &$smarty) {
     parent::prepareData($smarty);
 
-    $this->action = getOrDefault('action', 'display', ['display', 'pdf', 'downloadStatus', 'downloadScores']);
+    $this->action = getOrDefault('action', 'display', ['display', 'pdf', 'downloadStatus', 'downloadScores', 'downloadRuleCatalogScores']);
 
     $raw_frequency = $this->db->getFrequency($this->schema, $this->provider_id, $this->set_id, $this->file);
     $frequency = $this->db->fetchAssocList($raw_frequency, 'field');
-    error_log('frequency: ' . substr(json_encode($frequency, JSON_PRETTY_PRINT), 0, 100));
     $smarty->assign('frequency', $frequency);
 
     $variability = $this->db->fetchAssocList($this->db->getVariablitily($this->schema, $this->provider_id, $this->set_id), 'field');
@@ -45,6 +44,8 @@ class Overview extends BaseTab {
       $this->downloadStatus($frequency);
     } elseif ($this->action == 'downloadScores') {
       $this->downloadScores($frequency);
+    } elseif ($this->action == 'downloadRuleCatalogScores') {
+      $this->downloadRuleCatalogScores($frequency);
     } else {
       $smarty->assign('displayType', 'html');
     }
@@ -67,11 +68,27 @@ class Overview extends BaseTab {
     $this->printHeader('overview-scores.csv');
     echo "criteria,value,frequency\n";
     foreach ($frequency as $key => $record) {
-      if (preg_match('/:score$/', $key)) {
-        error_log($key);
-        error_log(json_encode($record));
+      if (preg_match('/:score$/', $key) && $key != 'ruleCatalog:score') {
         foreach ($record as $entry) {
           echo sprintf("%s,%d,%d\n", str_replace(':score', '', $key), $entry['value'], $entry['frequency']);
+        }
+      }
+    }
+  }
+
+  /**
+   * @param array $frequency
+   * @return void
+   */
+  protected function downloadRuleCatalogScores(array $frequency): void {
+    $this->outputType = 'none';
+
+    $this->printHeader('overview-scores.csv');
+    echo "count,frequency\n";
+    foreach ($frequency as $key => $record) {
+      if ($key == 'ruleCatalog:score') {
+        foreach ($record as $entry) {
+          echo sprintf("%d,%d\n", $entry['value'], $entry['frequency']);
         }
       }
     }
