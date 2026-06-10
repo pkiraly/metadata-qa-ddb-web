@@ -68,7 +68,7 @@
       <p>
         <a href="?tab=downloader&action=downloadRecord&id={$id}&file={$file|urlencode}">download record</a>
         &mdash;
-        <a href="?tab=downloader&action=downloadFile&id={$id}">download file</a>
+        <a href="?tab=downloader&action=downloadFile&id={$id}&file={$file|urlencode}">download file</a>
         &mdash;
         <a href="?tab=record&action=pdf&id={$id}&file={$file}&schema={$schema}&set_id={$set_id}&provider_id={$provider_id}&lang={$lang}" target="_blank">PDF</a>
       </p>

@@ -14,11 +14,16 @@ class Downloader extends BaseTab {
       $record = new Record();
       list($file, $xml) = $record->getXml($file, $id);
       $this->downloadContent($xml, 'record.xml', 'application/xml');
+
     } else if ($this->action == 'downloadFile') {
       $filename = $this->db->fetchValue($this->db->getFilenameByRecordId($id), 'file');
-      error_log('filename: ' . $filename);
+      $contentType = 'application/xml';
+      if (preg_match('/^(.*?)::(.*?\.xml)$/', $filename, $matches)) {
+        $filename = $matches[1];
+        $contentType = 'application/zip';
+      }
       $this->outputType = 'none';
-      $this->downloadFile($filename, 'application/xml');
+      $this->downloadFile($filename, $contentType);
 
     } else if ($this->action == 'csvFile') {
       include_once('Download.php');
