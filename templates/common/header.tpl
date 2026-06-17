@@ -4,7 +4,7 @@
     <!--a href="." class="header-link"><img class="hidden-xs hidden-sm" width="400"
     src="https://www.deutsche-digitale-bibliothek.de/assets/ddb-logo-lg-09861113a626a68e170a03d1cba40d51.svg"></a-->
      <h1 style="text-align: right; vertical-align: bottom; margin-top: 100px;" class="site-title align-bottom">
-      <i class="fa fa-cogs" aria-hidden="true" style="vertical-align: bottom;"></i> <span style="border-top: 3px solid #EC0A3C; border-bottom: 3px solid #EC0A3C; padding: 0 0 0 40px;">{t}metadata quality assessment dashboard{/t}</span>
+      <i class="fa fa-cogs" aria-hidden="true" style="vertical-align: bottom;"></i> <span style="border-top: 3px solid #EC0A3C; border-bottom: 3px solid #EC0A3C; padding: 0 0 0 0;">{t}metadata quality assessment dashboard{/t}</span>
     </h1>
   </div>
 </diw>
