@@ -1,4 +1,5 @@
-<diw class="row" style="background-color: brown; background-image: url(https://www.deutsche-digitale-bibliothek.de/assets/ddb-logo-lg-09861113a626a68e170a03d1cba40d51.svg);  background-repeat: no-repeat">
+<diw class="row" style="background-color: brown; background-image: url(https://raw.githubusercontent.com/Deutsche-Digitale-Bibliothek/ddbpro/refs/heads/master/web/themes/custom/ddbp/src/images/logo-ddbpro.svg);  background-repeat: no-repeat">
+
   <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
     <!--a href="." class="header-link"><img class="hidden-xs hidden-sm" width="400"
     src="https://www.deutsche-digitale-bibliothek.de/assets/ddb-logo-lg-09861113a626a68e170a03d1cba40d51.svg"></a-->
