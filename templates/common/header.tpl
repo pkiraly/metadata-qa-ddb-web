@@ -1,12 +1,10 @@
-<diw class="row" style="background-color: brown; background-image: url(https://raw.githubusercontent.com/Deutsche-Digitale-Bibliothek/ddbpro/refs/heads/master/web/themes/custom/ddbp/src/images/logo-ddbpro.svg);  background-repeat: no-repeat">
+<diw class="row" style="background-image: url(https://raw.githubusercontent.com/Deutsche-Digitale-Bibliothek/ddbpro/refs/heads/master/web/themes/custom/ddbp/src/images/logo-ddbpro.svg);  background-repeat: no-repeat">
 
-  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <!--a href="." class="header-link"><img class="hidden-xs hidden-sm" width="400"
     src="https://www.deutsche-digitale-bibliothek.de/assets/ddb-logo-lg-09861113a626a68e170a03d1cba40d51.svg"></a-->
-  </div>
-  <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 align-bottom" style="vertical-align: bottom !important; color: #333;">
-    <h1 style="text-align: right; vertical-align: bottom; margin-top: 100px;" class="align-bottom">
-      <i class="fa fa-cogs" aria-hidden="true" style="vertical-align: bottom;"></i> <span style="border-top: 1px solid #fff; border-bottom: 1px solid #fff; padding: 0 0 0 20px;">{t}metadata quality assessment dashboard{/t}</span>
+     <h1 style="text-align: right; vertical-align: bottom; margin-top: 100px;" class="site-title align-bottom">
+      <i class="fa fa-cogs" aria-hidden="true" style="vertical-align: bottom;"></i> <span style="border-top: 3px solid #EC0A3C; border-bottom: 3px solid #EC0A3C; padding: 0 0 0 40px;">{t}metadata quality assessment dashboard{/t}</span>
     </h1>
   </div>
 </diw>

@@ -15,24 +15,26 @@
   margin: auto
 }
 
-h1 {
+h1.site-title {
   /* color: #37ba00; */
   padding: 5px;
-  font-weight: 900;
+  font-weight: 400;
   color: #aaa;
   /*
+  font-size: 80%;
   border-bottom: 1px solid #cccccc;
   border-radius: 10px;
   */
 }
 
-h1 span {
-  font-size: 80%;
+h1.site-title span {
+  font-size: 50%;
+  color: #666;
   /* color: #999; */
   font-weight: 60;
 }
 
-h1 a.header-link {
+h1.site-title a.header-link {
   color: #37ba00;
   text-decoration: none;
 }
