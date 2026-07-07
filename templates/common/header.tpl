@@ -19,10 +19,12 @@
     </span>
   </div>
   <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+  {* 
     <p style="text-align: right">
       {if $lang == 'en'}English{else}<a href="?lang=en">English</a>{/if} |
       {if $lang == 'de'}Deutsch{else}<a href="?lang=de">Deutsch</a>{/if}
     </p>
+    *}
   </div>
 </diw>
 
