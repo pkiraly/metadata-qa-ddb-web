@@ -13,7 +13,7 @@ abstract class BaseTab implements Tab {
   protected $subdirs;
   protected $subdir;
   protected $outputType = 'html';
-  protected $lang = 'en';
+  protected $lang = 'de';
   protected $db;
   protected $schema;
   protected $set_id;
@@ -29,7 +29,7 @@ abstract class BaseTab implements Tab {
     $this->outputDir = $this->configuration['OUTPUT_DIR'];
     $this->subdirs = array_values(array_diff(scandir($this->outputDir), ['.', '..']));
     $this->subdir = getOrDefault('subdir', 'DC-DDB-WuerzburgIMG', $this->subdirs);
-    $this->lang = getOrDefault('lang', 'en', ['en', 'de']);
+    $this->lang = getOrDefault('lang', 'de', ['en', 'de']);
     $this->parameters['lang'] = $this->lang;
     if (isset($this->configuration['MQAF_DB_USER'])) {
       $this->db = new IssuesDBMySQL(
