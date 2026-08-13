@@ -7,18 +7,18 @@
       <div id="about-tab">
 
         <p>
-          This dasboard is made in collaboration of
-          <a href="https://www.deutsche-digitale-bibliothek.de/" about="_blank">Deutchse Digitale Bibliothek</a> (DDB) and
+          Dieses Dashboard wurde in Zusammenarbeit mit der
+          <a href="https://www.deutsche-digitale-bibliothek.de/" about="_blank">Deutchse Digitale Bibliothek</a> (DDB) und der
           <a href="https://gwdg.de" about="_blank">Gesellschaft für wissenschaftliche Datenverarbeitung mbH Göttingen</a>
-          (GWDG). Participants: Francesca Schulze (DDB), Cosmina Berta (DDB), Stefanie Rühle (DDB),
+          (GWDG) entwickelt. Mitwirkende: Francesca Schulze (DDB), Cosmina Berta (DDB), Stefanie Rühle (DDB), Birgit Armbruster (DDB), Jennifer Treu (DDB), Claudia Effenberger (DDB), 
           Julianne Stiller (Grenzenlos Digital e.V.), Péter Király (GWDG).
         </p>
 
-        <p>This is an open source project. You can find the code at:</p>
+        <p>Dies ist ein Open-Source-Projekt. Den Quellcode finden Sie unter:</p>
         <ul>
           <li><a href="https://github.com/pkiraly/metadata-qa-api" target="_blank">Metadata Quality Assessment Framework</a></li>
-          <li><a href="https://github.com/pkiraly/metadata-qa-ddb" target="_blank">custom DDB assessments (Java)</a></li>
-          <li><a href="https://github.com/pkiraly/metadata-qa-ddb-web" target="_blank">web UI (PHP)</a></li>
+          <li><a href="https://github.com/pkiraly/metadata-qa-ddb" target="_blank">benutzerdefinierte DDB-Auswertungen (Java)</a></li>
+          <li><a href="https://github.com/pkiraly/metadata-qa-ddb-web" target="_blank">Web-Oberfläche (PHP)</a></li>
         </ul>
       </div>
     </div>
