@@ -57,16 +57,6 @@
         {/foreach}
       </select>
     </div>
-
-    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-      <label class="label label-info" for="sets">{t}dataset{/t}</label><br>
-      <select id="sets" name="set_id" style="width: 300px;">
-        <option value="">all</option>
-        {foreach $sets as $id => $set}
-          <option value="{$id}"{if $id == $set_id} selected="selected"{/if}>{$set['name']} (id: {$id})</option>
-        {/foreach}
-      </select>
-    </div>
   </div>
 
   <div class="row">
@@ -87,7 +77,7 @@
     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
       <p style="margin-top: 2rem" class="text-right">
         <button type="submit" class="btn btn-primary btn-lg">{t}Select{/t}</button>
-        <button type="submit" class="btr btn-info">{t}cancel{/t}</button>
+        <button type="button" class="btr btn-info" onclick="window.location='?';return false;">{t}cancel{/t}</button>
       </p>
       <p>
     </p>
