@@ -13,9 +13,14 @@ class Overview extends BaseTab {
 
     $this->action = getOrDefault('action', 'display', ['display', 'pdf', 'downloadStatus', 'downloadScores', 'downloadRuleCatalogScores']);
 
+    error_log('Overview::schema: ' . $this->schema);
+
     $raw_frequency = $this->db->getFrequency($this->schema, $this->provider_id, $this->set_id, $this->file);
     $frequency = $this->db->fetchAssocList($raw_frequency, 'field');
     $smarty->assign('frequency', $frequency);
+    
+    if ($this->schema == 'NA')
+      $smarty->assign('criteria', $this->getAllCriteria());
 
     $variability = $this->db->fetchAssocList($this->db->getVariablitily($this->schema, $this->provider_id, $this->set_id), 'field');
     $smarty->assign('variability', $variability);
@@ -142,5 +147,10 @@ class Overview extends BaseTab {
   protected function printHeader($filename = 'overview-status.csv'): void {
     header(sprintf('Content-Type: %s; charset=utf-8', 'text/csv'));
     header('Content-Disposition: ' . sprintf('attachment; filename="%s"', $filename));
+  }
+
+  private function getAllCriteria(): array {
+    $raw_criteria = $this->db->getAllCriteria();
+    return $this->db->fetchList($raw_criteria, 'field');
   }
 }

@@ -140,7 +140,21 @@ class IssuesDBMySQL {
     $where = $this->getWhere($schema, $provider_id, $set_id, '');
     $stmt = $this->db->prepare('SELECT field, value, frequency FROM frequency ' . $where . ' ORDER BY field');
     $this->bindValues($schema, $provider_id, $set_id, '', $stmt);
+    // error_log(cleanSql($this->getSQL($stmt)));
 
+    $stmt->execute();
+    return $stmt;
+  }
+
+  public function getAllCriteria() {
+    $this->values = [];
+    $stmt = $this->db->prepare('
+    SELECT distinct(field) AS field 
+      FROM frequency 
+      WHERE field LIKE "Q-%" 
+        AND metadata_schema != "NA"
+        AND value IS NOT NULL
+      ORDER BY field');
     $stmt->execute();
     return $stmt;
   }
