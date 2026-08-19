@@ -10,12 +10,11 @@
 <script src="libs/d3.v5.min.js"></script>
 <script src="js/histogram.js" type="text/javascript"></script>
 <script>
-const db = '{$id}';
 const count = {$count};
-const link = '?&tab=records&field=ruleCatalog:score&{$controller->getCommonUrlParameters()}&value='
+const link = '?&tab=records&field=ruleCatalog:score&{$controller->getCommonUrlParameters()}&value=';
+const histogramDataUrl = '?tab=overview&action=downloadRuleCatalogScores&{$controller->getCommonUrlParameters()}';
 {literal}
 const units = 'scores';
-const histogramDataUrl = '?tab=overview&action=downloadRuleCatalogScores';
 const histogramSvgClass = 'histogram-chart';
 
 const tooltip = d3.select("body")

@@ -13,8 +13,6 @@ class Overview extends BaseTab {
 
     $this->action = getOrDefault('action', 'display', ['display', 'pdf', 'downloadStatus', 'downloadScores', 'downloadRuleCatalogScores']);
 
-    error_log('Overview::schema: ' . $this->schema);
-
     $raw_frequency = $this->db->getFrequency($this->schema, $this->provider_id, $this->set_id, $this->file);
     $frequency = $this->db->fetchAssocList($raw_frequency, 'field');
     $smarty->assign('frequency', $frequency);
