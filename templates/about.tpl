@@ -8,7 +8,7 @@
 
         <p>
           Dieses Dashboard wurde in Zusammenarbeit mit der
-          <a href="https://www.deutsche-digitale-bibliothek.de/" about="_blank">Deutchse Digitale Bibliothek</a> (DDB) und der
+          <a href="https://www.deutsche-digitale-bibliothek.de/" about="_blank">Deutsche Digitale Bibliothek</a> (DDB) und der
           <a href="https://gwdg.de" about="_blank">Gesellschaft für wissenschaftliche Datenverarbeitung mbH Göttingen</a>
           (GWDG) entwickelt. Mitwirkende: Francesca Schulze (DDB), Cosmina Berta (DDB), Stefanie Rühle (DDB), Birgit Armbruster (DDB), Jennifer Treu (DDB), Claudia Effenberger (DDB), 
           Julianne Stiller (Grenzenlos Digital e.V.), Péter Király (GWDG).
