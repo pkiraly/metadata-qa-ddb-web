@@ -6,6 +6,7 @@
          id="overview-tab" aria-controls="overview"
          href="?tab=overview&{$controller->getCommonUrlParameters()}">{t}Overview{/t}</a>
     </li>
+    <!--
     <li class="nav-item">
       <a class="nav-link1{if $tab == 'records'} active{/if}" data-toggle="tab1" role="tab1" aria-selected="false"
          id="records-tab" aria-controls="records"
@@ -16,6 +17,7 @@
          id="record-tab" aria-controls="record"
          href="?tab=record">{t}Record{/t}</a>
     </li>
+    -->
     <li class="nav-item">
       <a class="nav-link1{if $tab == 'fair'} active{/if}" data-toggle="tab1" role="tab1" aria-selected="false"
          id="fair-tab" aria-controls="fair"
