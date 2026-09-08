@@ -41,9 +41,13 @@ displayHistogram(histogramDataUrl, histogramSvgClass);
       {if $id != 'file'}
         <tr class="{if $factor->isGroup}criteria-group{else}criterium{/if}">
           {assign var="statusId" value={$id|cat:':status'}}
-          {if isset($frequency[$statusId]) && (
-               (isset($criteria) && in_array($statusId, $criteria)) 
-            || !is_null($frequency[$statusId][0]['value']))}
+          {if isset($frequency[$statusId]) 
+              && (
+                   (isset($criteria) && in_array($statusId, $criteria)) 
+                   || !is_null($frequency[$statusId][0]['value'])
+              )
+              && !in_array($id, $greyed)
+          }
             {assign var="measured" value=true}
           {else}
             {assign var="measured" value=false}

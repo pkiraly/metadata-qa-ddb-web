@@ -7,6 +7,7 @@ use Dompdf\Dompdf;
 class Overview extends BaseTab {
 
   private $blockers = ['Q-1.1', 'Q-4.1', 'Q-5.1', 'Q-6.1'];
+  private $greyed = ['Q-3.1'];
 
   public function prepareData(Smarty &$smarty) {
     parent::prepareData($smarty);
@@ -38,6 +39,7 @@ class Overview extends BaseTab {
     $smarty->assign('totalScore', ($total == 0 ? 0 : $total / $count));
     $smarty->assign('notMeasured', $not_measured);
     $smarty->assign('blockers', $this->blockers);
+    $smarty->assign('greyed', $this->greyed);
 
     if ($this->action == 'pdf') {
       $smarty->assign('displayType', 'pdf');
