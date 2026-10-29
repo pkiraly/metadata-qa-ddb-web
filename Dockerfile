@@ -1,7 +1,11 @@
-FROM php:8.1-apache
+FROM php:8.3-apache
 
 LABEL maintainer="Péter Király <pkiraly@gwdg.de>"
-LABEL description="A metadata quality assessment tool for Deutsche Digitale Bibliothek."
+LABEL description="A web interface of quality assessment tool for Deutsche Digitale Bibliothek metadata."
+# the Github repo labels
+LABEL org.opencontainers.image.description="A web interface of quality assessment tool for Deutsche Digitale Bibliothek metadata."
+LABEL org.opencontainers.image.source=https://github.com/pkiraly/metadata-qa-ddb-web
+LABEL org.opencontainers.image.licenses="GNU General Public License v3.0"
 
 ARG SMARTY_VERSION=3.1.33
 ARG DOMPDF_VERSION=3.1.0
