@@ -26,3 +26,5 @@ cp configuration.cnf.template configuration.cnf
 ```
 
 Then edit it. 
+
+Happy usage!
