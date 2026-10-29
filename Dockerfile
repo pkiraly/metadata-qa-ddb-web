@@ -1,7 +1,11 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 LABEL maintainer="Péter Király <pkiraly@gwdg.de>"
-LABEL description="A metadata quality assessment tool for Deutsche Digitale Bibliothek."
+LABEL description="Web interface of the quality assessment tool for Deutsche Digitale Bibliothek metadata."
+# the Github repo labels
+LABEL org.opencontainers.image.description="Web interface of the quality assessment tool for Deutsche Digitale Bibliothek metadata."
+LABEL org.opencontainers.image.source=https://github.com/pkiraly/metadata-qa-ddb-web
+LABEL org.opencontainers.image.licenses="GNU General Public License v3.0"
 
 ARG SMARTY_VERSION=3.1.33
 
