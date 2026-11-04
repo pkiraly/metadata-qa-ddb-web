@@ -28,7 +28,8 @@ function createSmarty($templateDir) {
   // define('APPLICATION', 'szte');
   // define('APPLICATION_DIR', $_SERVER['DOCUMENT_ROOT'] . '/' . APPLICATION);
   define('APPLICATION_DIR', __DIR__);
-  define('SMARTY_DIR', APPLICATION_DIR . '/libs/smarty-3.1.33/libs/');
+  // Stable path: dependency bumps must not become loader bugs.
+  define('SMARTY_DIR', APPLICATION_DIR . '/libs/smarty/libs/');
   define('_SMARTY', APPLICATION_DIR . '/libs/_smarty/');
   require_once(SMARTY_DIR . 'Smarty.class.php');
   $smarty = new Smarty();
