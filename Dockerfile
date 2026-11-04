@@ -7,10 +7,13 @@ LABEL org.opencontainers.image.description="A web interface of quality assessmen
 LABEL org.opencontainers.image.source=https://github.com/pkiraly/metadata-qa-ddb-web
 LABEL org.opencontainers.image.licenses="GNU General Public License v3.0"
 
-ARG SMARTY_VERSION=3.1.33
-ARG DOMPDF_VERSION=3.1.0
+# Patch drift is intentional; API-breaking majors stay opt-in.
+ARG SMARTY_MAJOR=4
+ARG DOMPDF_MAJOR=3
 
+# Patch installed OS packages too; apt-get install alone leaves old baggage.
 RUN apt-get update \
+ && apt-get upgrade -y \
  && apt-get install -y --no-install-recommends \
       # install basic OS tools
       apt-utils \
@@ -47,21 +50,27 @@ RUN \
  && sed -i.bak 's,<MySQL user name>,ddb,' configuration.cnf \
  && sed -i.bak 's,<MySQL password>,ddb,' configuration.cnf \
  #
- # set smarty
+ # Stable tags only; numeric SemVer keeps .10 ahead of .9.
  #
  && cd libs/ \
- && curl -s -L https://github.com/smarty-php/smarty/archive/v${SMARTY_VERSION}.zip --output v$SMARTY_VERSION.zip \
+ && curl -fsSL https://repo.packagist.org/p2/smarty/smarty.json --output /tmp/smarty.json \
+ && SMARTY_VERSION="$(jq -er --arg major "$SMARTY_MAJOR" '.packages["smarty/smarty"] | map(.version | ltrimstr("v") | select(startswith($major + ".") and test("^[0-9]+\\.[0-9]+\\.[0-9]+$"))) | max_by(split(".") | map(tonumber))' /tmp/smarty.json)" \
+ && curl -fsSL https://github.com/smarty-php/smarty/archive/v${SMARTY_VERSION}.zip --output v$SMARTY_VERSION.zip \
  && unzip -oq v${SMARTY_VERSION}.zip \
- && rm v${SMARTY_VERSION}.zip \
+ # Keep the loader path stable while releases move on.
+ && mv smarty-${SMARTY_VERSION} smarty \
+ && rm v${SMARTY_VERSION}.zip /tmp/smarty.json \
  && mkdir -p _smarty/templates_c \
  && chmod a+w -R _smarty/templates_c/ \
  #
- # set dompdf (from https://github.com/dompdf/dompdf)
+ # Use Dompdf's bundled release ZIP, including its dependency tree.
  #
- && curl -s -L https://github.com/dompdf/dompdf/releases/download/v${DOMPDF_VERSION}/dompdf-${DOMPDF_VERSION}.zip \
+ && curl -fsSL https://repo.packagist.org/p2/dompdf/dompdf.json --output /tmp/dompdf.json \
+ && DOMPDF_VERSION="$(jq -er --arg major "$DOMPDF_MAJOR" '.packages["dompdf/dompdf"] | map(.version | ltrimstr("v") | select(startswith($major + ".") and test("^[0-9]+\\.[0-9]+\\.[0-9]+$"))) | max_by(split(".") | map(tonumber))' /tmp/dompdf.json)" \
+ && curl -fsSL https://github.com/dompdf/dompdf/releases/download/v${DOMPDF_VERSION}/dompdf-${DOMPDF_VERSION}.zip \
     --output dompdf-${DOMPDF_VERSION}.zip \
  && unzip -oq dompdf-${DOMPDF_VERSION}.zip \
- && rm dompdf-${DOMPDF_VERSION}.zip \
+ && rm dompdf-${DOMPDF_VERSION}.zip /tmp/dompdf.json \
  #
  # set apache
  #

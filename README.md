@@ -10,10 +10,11 @@ sudo apt-get install php-intl php-sqlite3 php-mysql
 
 ### Install Smarty templating engine
 ```bash
-export SMARTY_VERSION=3.1.33
+export SMARTY_VERSION=4.5.8
 cd libs/
 curl -s -L https://github.com/smarty-php/smarty/archive/v${SMARTY_VERSION}.zip --output v$SMARTY_VERSION.zip
 unzip -q v${SMARTY_VERSION}.zip
+mv smarty-${SMARTY_VERSION} smarty
 rm v${SMARTY_VERSION}.zip
 mkdir -p _smarty/templates_c
 chmod a+w -R _smarty/templates_c/
